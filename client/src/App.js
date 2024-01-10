@@ -5,13 +5,15 @@ import Products from './Components/Products';
 import Sidebar from './Components/Sidebar';
 import Slider from './Components/Slider';
 import Navbar from './Routes/Navbar';
+import SinglePage from './pages/SinglePage';
 
 function App() {
   return (
     <div >
      <Navbar/>
      {/* <Slider/> */}
-     <Products/>
+     {/* <Products/> */}
+     <SinglePage/>
 
      
     </div>
