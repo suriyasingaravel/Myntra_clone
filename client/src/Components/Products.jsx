@@ -8,10 +8,10 @@ const Products = () => {
         <p className='text-xs my-3 ml-4'>Home/ Clothing / Men's Tshirts</p>
         <h3 className='text-sm my-5 ml-4 font-bold' >Men's T-shirts</h3>
         <div className='flex w-full '>
-            <div className="w-[17%] relative" >
+            <div className=" sm:w-[50%] md:w-[30%] lg:w-[17%] relative" >
             <Sidebar/>
             </div>
-           <div className='w-[83%]'>
+           <div className=' sm:w-[50%] md:w-[70%] lg:w-[83%]'>
            <ProductPage/>
            </div>
             

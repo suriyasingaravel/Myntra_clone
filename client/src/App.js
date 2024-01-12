@@ -12,7 +12,7 @@ function App() {
     <div >
      <Navbar/>
      {/* <Slider/> */}
-     {/* <Products/> */}
+     <Products/>
      <SinglePage/>
 
      
