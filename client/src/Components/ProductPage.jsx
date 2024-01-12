@@ -20,7 +20,17 @@ export default function ProductPage() {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+     <p className="text-center"> 
+     {/* <img
+     src="https://lollypop.design/wp-content/uploads/2022/09/logoanimated100.gif"
+     className="text-center"
+     alt="Loading Animation" /> */}
+      Loading...
+      </p>
+
+      
+    );
   }
 
   if (error) {
