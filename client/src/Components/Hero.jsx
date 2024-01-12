@@ -32,6 +32,7 @@ export default function Hero({p}) {
         className="mySwiper"
       >
         <SwiperSlide>
+          
             <div className='flex '>
 <img  className='w-[16.6%]' src="https://assets.myntassets.com/w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/8/3/51084b8a-9c9e-4b03-bc4a-dfd7738590eb1691076143197-image_png949061620--1-.png" alt="" />
 <img  className='w-[16.6%]' src="https://assets.myntassets.com/w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/8/3/bf39dcbb-1a94-481c-b943-43fca34bf0581691066296958-unnamed---2023-08-03T180811.304.png" alt="" />
