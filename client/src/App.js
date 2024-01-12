@@ -1,4 +1,5 @@
 import './App.css';
+import Hero from './Components/Hero';
 import Login from './Components/Login';
 import ProductPage from './Components/ProductPage';
 import Products from './Components/Products';
@@ -10,10 +11,12 @@ function App() {
   return (
     <div >
      <Navbar/>
-     {/* <Slider/> */}
-     <Products/>
 
-     
+     <Slider/>
+     <Hero p={"MEDAL WORTHY BRANDS TO BAG"}/>
+     <Hero p={"GRAND GLOBAL BRANDS"}/>
+
+
     </div>
   );
 }
