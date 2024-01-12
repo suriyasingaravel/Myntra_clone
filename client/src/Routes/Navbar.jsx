@@ -149,7 +149,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="bg-white w-full border-b border-gray-200">
+    <div className="bg-white w-full border-b border-gray-200 z-20">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -301,7 +301,7 @@ export default function Navbar() {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                <a href="#">
+                <a href="/">
                   <span className="sr-only">Your Company</span>
                   <img
                     className="h-8 w-auto"

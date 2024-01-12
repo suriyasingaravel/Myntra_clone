@@ -1,6 +1,7 @@
 import React from 'react'
-import Sidebar from './Sidebar'
-import ProductPage from './ProductPage'
+import Sidebar from '../Components/Sidebar'
+import ProductPage from '../Components/ProductPage'
+
 
 const Products = () => {
   return (

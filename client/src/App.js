@@ -1,10 +1,9 @@
 import './App.css';
 import Hero from './Components/Hero';
-import Login from './Components/Login';
 import ProductPage from './Components/ProductPage';
-import Products from './Components/Products';
 import Sidebar from './Components/Sidebar';
 import Slider from './Components/Slider';
+import AllRoutes from './Routes/AllRoutes';
 import Navbar from './Routes/Navbar';
 import SinglePage from './pages/SinglePage';
 
@@ -12,11 +11,7 @@ function App() {
   return (
     <div >
      <Navbar/>
-
-
-     <Slider/>
-     <Hero p={"MEDAL WORTHY BRANDS TO BAG"}/>
-     <Hero p={"GRAND GLOBAL BRANDS"}/>
+    <AllRoutes/>
 
 
     </div>
