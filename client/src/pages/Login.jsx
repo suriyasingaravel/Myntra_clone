@@ -2,8 +2,8 @@ import React from 'react'
 
 const Login = () => {
   return (
-    <div className='bg-red-50 w-full]'>
-    <div className='sm:w-[50%] md:w-[35%] lg:w-[25%] m-auto mt-7 bg-white h-[500px]  '>
+    <div className='bg-red-50 w-full h-[100vh]'>
+    <div className='sm:w-[50%] md:w-[35%] lg:w-[25%] m-auto  bg-white h-[80vh]  '>
         <img src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/2023/10/26/f96c9b3f-6c5c-4383-8f11-12de043faa501698300150501-Flat_400--1-.jpg" alt="offer-logo" />
         <div>
             <h2 className='text-[20px] font-bold m-4'>Login or Signup</h2>
