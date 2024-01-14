@@ -1,31 +1,67 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BagIcon from '../Components/BagIcon'
 import HeartIcon from '../Components/HeartIcon'
 import { CiHeart } from "react-icons/ci";
 import TruckIcon from '../Icons/TruckIcon';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 
 const SinglePage = () => {
+
+  let {id} = useParams();
+  const [data,setData] = useState({});
+
+  const products= useSelector((store)=> store.productReducer.products)
+
+  console.log(products);
+
+  useEffect(()=>{
+
+    const product = products.find((el) => el._id === (id));
+    console.log(product);
+    setData(product);
+    //  axios.get(`https://myntra-backend-cyan.vercel.app/products/${id}`)
+    //  .then((res)=> {
+    //   console.log(res.data.product);
+    //   setData(res.data.product)
+    // })
+    //  .catch((err)=> console.log(err))
+
+  },[])
+
+
+  console.log(data);
+
+  const handleBag = ()=>{
+     alert("Product added to bag successfully!");
+  }
+
+  // const uppercaseGender = data.gender.toUpperCase();
+
+  
+
   return (
     <div className=' w-[95%] m-auto '>
-          <p className='text-xs my-5 ml-4 '>Home/ Clothing / Men's Tshirts</p> 
+          <p className='text-xs my-5 ml-4 '>Home/ Clothing / {data.gender} {data.category}</p> 
           <div className='flex flex-col sm:flex-col md:flex-col lg:flex-row mt-7'>
           <div className='w-[40%] overflow-hidden'>
-          <img  className="transition-transform transform-gpu hover:scale-110 sm:m-auto" src="https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/25072090/2023/9/30/6be97619-12fc-40c3-a91b-b5d5f13ba8181696013416163StormbornMenBlackPrintedRawEdgeT-shirt1.jpg" alt="" />
+          <img  className="transition-transform transform-gpu hover:scale-110 sm:m-auto" src={data.image_url} alt="" />
           </div>
           <div className='w-[60%] sm:mt-5 md:ml-7'>
-            <h2 className='text-[24px] font-bold'>Stormborn</h2>
-            <p className='text-[20px] text-lightgrey'>Graphic Printed Oversized Drop Shoulder Sleeves Pure Cotton T-shirt</p>
+            <h2 className='text-[24px] font-bold'>{data.brand}</h2>
+            <p className='text-[20px] text-lightgrey'>{data.subtext}</p>
            
             <div className='flex border border-solid border-lightgrey w-[170px] h-[30px] my-3 rounded'>
-            <span className='mx-2 font-bold'>4.3 ☆ | </span>
-            <p className='mx-1'>758 Ratings</p>
+            <span className='mx-2 font-bold'>{data.rating} ☆ | </span>
+            <p className='mx-1'>{data.no_of_rating} Ratings</p>
             </div>
             <hr className='my-3' />
-            <span className="text-[24px] font-bold">Rs. 758 </span> 
+            <span className="text-[24px] font-bold">Rs.{data.price}</span> 
             <span className='text-[18px] mx-1'>MRP </span>
-        <strike className="text-[20px] mx-1">  ₹1099</strike>
-        <span className="text-[20px] font-bold ml-1 text-[#ff905a]">(20% OFF)</span> 
+        <strike className="text-[20px] mx-1">  ₹{data.mrp}</strike>
+        <span className="text-[20px] font-bold ml-1 text-[#ff905a]">({data.offer}% OFF)</span> 
         <p  className='text-[#03a685] text-[14px] my-3 font-bold'>inclusive of all taxes</p>
         <span className=' text-[16px] font-bold  '>SELECT SIZE </span>
         <span className=' text-[#ff3e6c] text-[14px] font-bold ml-4 '>SIZE CHART > </span>  
@@ -38,7 +74,8 @@ const SinglePage = () => {
         </div>
        
         <button 
-        className= 'bg-[#ff3e6c] border rounded-md border-pink-700 text-white w-[300px] text-[16px] font-bold h-[55px] mt-3'>
+        className= 'bg-[#ff3e6c] border rounded-md border-pink-700 text-white w-[300px] text-[16px] font-bold h-[55px] mt-3' 
+        onClick={handleBag}>
          <BagIcon/>  ADD TO BAG </button>
          <button 
         className= ' border rounded-md border-gray-300  text-black w-[220px] text-[16px] font-semibold h-[55px] mt-3 mx-3'>

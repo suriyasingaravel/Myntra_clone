@@ -5,6 +5,11 @@ import Signup from '../pages/Signup'
 import Login from '../pages/Login'
 import Products from '../pages/Products'
 import SinglePage from '../pages/SinglePage'
+import Bag from '../pages/Bag'
+import PrivateRoute from './PrivateRoute'
+import { Img } from '@chakra-ui/react'
+import Address from '../pages/Address'
+import Payment from '../pages/Payment'
 
 const AllRoutes = () => {
   return (
@@ -14,7 +19,18 @@ const AllRoutes = () => {
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<Signup/>}/>
           <Route path='/products' element={<Products/>}/>
-          <Route path='/singlepage' element={<SinglePage/>}/>
+          <Route path='/singlepage/:id' element={ 
+          <SinglePage/>}/>
+           {/* <Route path='/singlepage' element={ 
+             <PrivateRoute>
+               <SinglePage/>
+             </PrivateRoute>
+         }/> */}
+          <Route path='/bag' element={<Bag/>}/>
+          <Route path='/address' element={<Address/>}/>
+          <Route path='/payment' element={<Payment/>}/>
+          <Route path='/*' element={<img src='https://images01.nicepage.com/c461c07a441a5d220e8feb1a/3a6336464a4d53d9b4355162/Na_June_54-min.png' />}/>
+
 
 
         </Routes>
