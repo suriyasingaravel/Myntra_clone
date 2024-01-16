@@ -2,6 +2,9 @@ const express = require("express");
 const { userRouter } = require("./routes/Users.routes");
 const { productRouter } = require("./routes/Product.routes");
 const { cartRouter } = require("./routes/Cart.routes");
+const {wishListRouter} = require("./routes/WishList.routes");
+
+
 const { authenticate } = require("./middlewares/Authenticate.middleware");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -21,10 +24,12 @@ app.get("/", (req,res)=>{
 })
 
 app.use(express.json());
+
 app.use("/users", userRouter);
 app.use("/products", productRouter);
 app.use(authenticate);
 app.use("/cart", cartRouter);
+app.use("/wishlist", wishListRouter);
 
 app.listen(process.env.PORT, async () => {
   try {
