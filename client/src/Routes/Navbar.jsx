@@ -165,7 +165,7 @@ export default function Navbar() {
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
 
-          <div className="fixed inset-0 z-40 flex">
+          <div className="fixed inset-0 z-20 flex">
             <Transition.Child
               as={Fragment}
               enter="transition ease-in-out duration-300 transform"
@@ -207,9 +207,9 @@ export default function Navbar() {
                       ))}
                     </Tab.List>
                   </div>
-                  <Tab.Panels as={Fragment}>
+                  <Tab.Panels  as={Fragment}>
                     {navigation.categories.map((category) => (
-                      <Tab.Panel key={category.name} className="space-y-10 px-4 pb-8 pt-10">
+                      <Tab.Panel key={category.name} className="space-y-10 px-4 pb-8 pt-10  ">
                         <div className="grid grid-cols-2 gap-x-4">
                           {category.featured.map((item) => (
                             <div key={item.name} className="group relative text-sm">
@@ -268,7 +268,7 @@ export default function Navbar() {
                     </a>
                   </div>
                   <div className="flow-root">
-                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+                    <a href="/signup" className="-m-2 block p-2 font-medium text-gray-900">
                       Create account
                     </a>
                   </div>
@@ -417,7 +417,7 @@ export default function Navbar() {
                     Sign in
                   </a>
                   <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                  <a href="/signup" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                     Create account
                   </a>
                 </div>

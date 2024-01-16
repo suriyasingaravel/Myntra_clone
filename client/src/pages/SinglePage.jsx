@@ -19,24 +19,83 @@ const SinglePage = () => {
 
   useEffect(()=>{
 
+    
     const product = products.find((el) => el._id === (id));
     console.log(product);
-    setData(product);
-    //  axios.get(`https://myntra-backend-cyan.vercel.app/products/${id}`)
-    //  .then((res)=> {
-    //   console.log(res.data.product);
-    //   setData(res.data.product)
-    // })
-    //  .catch((err)=> console.log(err))
+    if(product){
+       setData(product);
+    }
+    
+  else{
+    axios.get(`https://myntra-backend-cyan.vercel.app/products/${id}`)
+    .then((res)=> {
+     console.log(res.data.product);
+     setData(res.data.product)
+   })
+    .catch((err)=> console.log(err))
+  }
+   
 
   },[])
 
 
   console.log(data);
 
-  const handleBag = ()=>{
-     alert("Product added to bag successfully!");
+  const handleBag = (id)=>{
+    
+     let cartObj ={
+      rating: data.rating,
+      no_of_rating: data.no_of_rating,
+      image_url: data.image_url,
+      brand: data.brand,
+      category: data.category,
+      gender: data.gender,
+      subtext: data.subtext,
+      price: data.price,
+      mrp: data.mrp,
+      offer: data.offer,
+     }
+
+     console.log(cartObj)
+
+     axios.post("https://myntra-backend-cyan.vercel.app/cart/create",cartObj,
+     {headers:
+     {authorization:`Bearer ${localStorage.getItem("token")}`}
+     })
+     .then((res)=>alert(res.data.msg))
+     .catch((res)=>alert("error"));
+    //  alert("Product added to bag successfully!");
   }
+
+
+  const handleWishList = ()=>{
+    
+    let wishListObj ={
+     rating: data.rating,
+     no_of_rating: data.no_of_rating,
+     image_url: data.image_url,
+     brand: data.brand,
+     category: data.category,
+     gender: data.gender,
+     subtext: data.subtext,
+     price: data.price,
+     mrp: data.mrp,
+     offer: data.offer,
+    }
+
+    console.log(wishListObj)
+
+    axios.post("https://myntra-backend-cyan.vercel.app/wishlist/create",wishListObj,
+    {headers:
+    {authorization:`Bearer ${localStorage.getItem("token")}`}
+    })
+    .then((res)=>alert(res.data.msg))
+    .catch((res)=>alert("error"));
+    // alert("Product added to WishList successfully!");
+ }
+
+
+  
 
   // const uppercaseGender = data.gender.toUpperCase();
 
@@ -75,10 +134,12 @@ const SinglePage = () => {
        
         <button 
         className= 'bg-[#ff3e6c] border rounded-md border-pink-700 text-white w-[300px] text-[16px] font-bold h-[55px] mt-3' 
-        onClick={handleBag}>
+        onClick={()=>{handleBag(data.id)}}>
          <BagIcon/>  ADD TO BAG </button>
          <button 
-        className= ' border rounded-md border-gray-300  text-black w-[220px] text-[16px] font-semibold h-[55px] mt-3 mx-3'>
+        className= ' border rounded-md border-gray-300  text-black w-[220px] text-[16px] font-semibold h-[55px] mt-3 mx-3'
+        onClick={handleWishList}
+        >
          <HeartIcon/>
          WISHLIST
           </button>

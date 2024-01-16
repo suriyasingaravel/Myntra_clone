@@ -1,8 +1,33 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { FaPercent } from 'react-icons/fa';
 
 
 const Bag = () => {
+
+
+  const [data,setData] = useState([])
+
+
+
+  useEffect(()=>{
+    axios
+    .get("https://myntra-backend-cyan.vercel.app/cart/", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .then((res) => {
+      console.log(res.data.cart)
+     
+      setData(res.data.cart);
+    })
+    .catch((err) => console.log(err));
+
+  },[])
+
+
+
   return (
     <div className='flex w-[70%] m-auto gap-[30px]  mt-[20px]'>
 
@@ -27,40 +52,45 @@ const Bag = () => {
         <div className='flex justify-between border border-solid border-grey-100 p-5 my-2 '>
           <div className='flex'>
           <input type="checkbox" />
-          <p className='mx-3 font-bold'>1/1 ITEMS SELECTED</p>
+          <p className='mx-3 font-bold'>{data.length} ITEMS IN CART</p>
          </div> 
           <div className='flex'>
             <p className='text-[12px] font-bold'>REMOVE | </p>
             <p className='mx-3 text-[12px] font-bold'>MOVE TO WISHLIST </p>
           </div>
           </div>
-          <div className='flex border border-solid border-grey-100 p-5 gap-5 rounded'>
-           <div className='w-[20%]'>
-            <img className='object-contain' src="https://assets.myntassets.com/w_111,h_148,dpr_1.2000000476837158,q_60,c_limit,fl_progressive/h_148,q_60,w_111/v1/assets/images/12504436/2021/1/14/f4c76908-4d09-4560-99d5-f649812b6e7a1610607670185-Roadster-Men-Tshirts-7801610607669087-1.jpg" alt="bag-image" />
-           </div>
-           <div className='w-[70%]'>
-           <p className=' text-[14px] font-bold my-1'>Roadster</p>
-           <p className='text-[14px]  text-[#282c3f] my-1'> Men Green & Navy Blue Striped Polo T-Shirt </p>
-           <p className='text-[12px]  text-[#94969f] my-1'>Sold by: GARG ACYRYLICS LTD. - SJIT</p>
-           <div className='flex gap-3 my-1'>
-           {/* <button className='border border-solid bg-[#f5f5f6] w-[100px]  p-5 rounded'>Size : L</button> */}
-           <button className='text-[#282c3f] text-[14px] font-bold '>Size : L</button>   
-           <button className='text-[#282c3f] text-[14px] font-bold '> Qty: 1 </button>
-           </div>
-           <div className='flex mt-1.5 my-1'>
-           <h3 className="text-[14px]  font-bold ">₹349</h3>
-           <strike className="text-[14px] text-[#94969f] mx-2 "> ₹1399 </strike>
-            <p className="text-[14px] text-[#94969f] ">₹1,050 OFF</p>
-           </div>
-            <p className='text-[12px] my-1'> <span className='text-[#282c3f]  font-bold'>  14 days</span> return available</p>
-            <p className='text-[12px] my-1'>Delivery by <span className='font-bold'> 19 Jan 2024 </span></p>
-           </div>
-          </div>
+          {data.length > 0 && data.map((el)=>  {
+            return (
+              <div className='flex border border-solid border-grey-100 p-5 gap-5 rounded'>
+              <div className='w-[20%]'>
+               <img className='object-contain' src={el.image_url} alt="bag-image" />
+              </div>
+              <div className='w-[70%]'>
+              <p className=' text-[14px] font-bold my-1'>{el.brand}</p>
+              <p className='text-[14px]  text-[#282c3f] my-1'> {el.subtext} </p>
+              <p className='text-[12px]  text-[#94969f] my-1'>Sold by: GARG ACYRYLICS LTD. - SJIT</p>
+              <div className='flex gap-3 my-1'>
+              {/* <button className='border border-solid bg-[#f5f5f6] w-[100px]  p-5 rounded'>Size : L</button> */}
+              <button className='text-[#282c3f] text-[14px] font-bold '>Size : L</button>   
+              <button className='text-[#282c3f] text-[14px] font-bold '> Qty: 1 </button>
+              </div>
+              <div className='flex mt-1.5 my-1'>
+              <h3 className="text-[14px]  font-bold ">₹{el.price}</h3>
+              <strike className="text-[14px] text-[#94969f] mx-2 "> ₹{el.mrp} </strike>
+               <p className="text-[14px] text-[#94969f] ">₹{el.mrp-el.price} OFF</p>
+              </div>
+               <p className='text-[12px] my-1'> <span className='text-[#282c3f]  font-bold'>  14 days</span> return available</p>
+               <p className='text-[12px] my-1'>Delivery by <span className='font-bold'> 19 Jan 2024 </span></p>
+              </div>
+             </div>
+            )
+          })}
+        
        
         </div>
 
         {/* box-2 */}
-        <div className='w-[37%] border border-solid border-grey-100 p-5 '>
+        <div className='w-[37%] border border-solid border-grey-100 p-5  '>
            <p className='text-[12px] font-bold'>COUPONS</p>
            <div className='flex items-center justify-center gap-10'>
             <p className='font-bold'>Apply Coupons</p>

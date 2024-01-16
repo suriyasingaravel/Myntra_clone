@@ -17,7 +17,7 @@ export default function ProductPage() {
 
   const paramObj ={
       params:{
-        category: searchParams.getAll("category") || [],
+        brand: searchParams.getAll("brand") || [],
       }
   }
 
@@ -34,7 +34,7 @@ export default function ProductPage() {
     //     setLoading(false);
     //   });
 
-    dispatch(getProducts)
+    dispatch(getProducts(paramObj))
 
       
   }, [searchParams]);
@@ -58,10 +58,10 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="grid gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5">
+    <div className="grid gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 p-7">
       {products.map((el) => (
         <div className="mb-2" key={el._id} >
-          <Link to={`/singlepage/${el._id}`}>  <img className="w-full" src={el.image_url} alt={el.subtext} /> </Link>
+          <Link to={`/singlepage/${el._id}`}>  <img className="w-[80%]" src={el.image_url} alt={el.subtext} /> </Link>
           <div className="ml-2">
             <h3 className="text-[16px] mt-1.5 font-bold">{el.brand}</h3>
             <p className="text-[13px]">{el.subtext}</p>
