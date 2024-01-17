@@ -7,6 +7,9 @@ const Bag = () => {
 
 
   const [data,setData] = useState([]);
+const [total,setTotal]=useState(0);
+const [mrp,setMrp]=useState(0)
+
 
 
   const handleDelete = (id)=>{
@@ -38,6 +41,14 @@ const Bag = () => {
     .then((res) => {
       // console.log(res.data.cart)
       if(res.data.cart){
+        let total=0;
+        let mrp=0;
+        res.data.cart.forEach((el,ind)=>{
+          total+=el.price;
+          mrp+=el.mrp;
+        });
+        setTotal(total+20);
+        setMrp(mrp)
         setData(res.data.cart);
       }
       else{
@@ -142,11 +153,11 @@ console.log(data)
             <div className='w-[100%]'>
               <div className='flex justify-between my-1'>
                 <p className='text-[14px]'>Total MRP</p>
-                <p className='text-[14px]'> ₹1,399</p>
+                <p className='text-[14px]'>₹ {mrp}</p>
               </div>
               <div className='flex justify-between my-1'>
                 <p className='text-[14px]'>Discount on MRP</p>
-                <p className='text-[#03a685] text-[14px]'> ₹1,050</p>
+                <p className='text-[#03a685] text-[14px]'>- ₹ {mrp-total}</p>
               </div>
               <div className='flex justify-between my-1'>
                 <p className='text-[14px]'>Coupon Discount</p>
@@ -157,7 +168,7 @@ console.log(data)
                 <p className='text-[14px]' >Platform Fee</p>
                 <p className='text-[#ff3f6c] text-[14px] font-bold mx-3'> Know More</p>
                 </div>
-                <p className='text-[14px]' >  ₹20</p>
+                <p className='text-[14px]' >+ ₹ 20</p>
                
               </div>
               <div className='flex justify-between my-1'>
@@ -170,7 +181,7 @@ console.log(data)
               <hr className='my-3' />
               <div className='flex justify-between my-1'>
                 <p className='text-[15px] font-bold'>Total Amount</p>
-                <p className='text-black font-bold'> ₹349</p>
+                <p className='text-black font-bold'>₹ {total}</p>
               </div>
               <button 
         className= 'bg-[#ff3e6c] border rounded border-pink-700 text-white w-[100%] text-[14px] font-bold h-[40px] mt-3'>
