@@ -14,7 +14,6 @@ const productSchema = mongoose.Schema(
     gender: { type: String },
     rating:{type:Number},
     // discount:{type:Number}
-
   },
   {
     versionKey: false,

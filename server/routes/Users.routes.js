@@ -2,6 +2,9 @@ const { UserModel } = require("../models/User.model");
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
+
+
 const userRouter = express.Router();
 
 userRouter.get("/", async (req, res) => {
@@ -62,7 +65,7 @@ userRouter.post("/login", async (req, res) => {
       });
     } 
     else {
-      res.send("Not able to login ! Please check");
+      res.send("Not able to login ! Please check credentials");
     }
   } 
   catch (error) {

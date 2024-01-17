@@ -10,6 +10,7 @@ import PrivateRoute from './PrivateRoute'
 import { Img } from '@chakra-ui/react'
 import Address from '../pages/Address'
 import Payment from '../pages/Payment'
+import WishList from '../pages/WishList'
 
 const AllRoutes = () => {
   return (
@@ -27,6 +28,7 @@ const AllRoutes = () => {
              </PrivateRoute>
          }/> */}
           <Route path='/bag' element={<Bag/>}/>
+          <Route path='/wishlist' element={<WishList/>}/>
           <Route path='/address' element={<Address/>}/>
           <Route path='/payment' element={<Payment/>}/>
           <Route path='/*' element={<img src='https://images01.nicepage.com/c461c07a441a5d220e8feb1a/3a6336464a4d53d9b4355162/Na_June_54-min.png' />}/>
