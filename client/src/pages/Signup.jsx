@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 
@@ -8,6 +9,7 @@ const Signup = () => {
   const [pass,setPass] = useState("");
   const [address,setAddress] = useState("");
   const [phone,setPhone] = useState("");
+  const navigate = useNavigate()
 
 
  const handleClick = ()=>{
@@ -15,18 +17,24 @@ const Signup = () => {
       name: name,
       email: email,
       pass:pass,
-      // address: address,
+      address: address,
       phone: phone
     }
 
     axios.post(`https://myntra-backend-cyan.vercel.app/users/register`, newUser)
-    .then((res)=> console.log(res.data))
+    .then((res)=> {
+      console.log(res.data);
+      alert(`User registered successfully`);
+      navigate("/login")
+     
+    })
     .catch((err)=> console.log(err));
 
-    setName("");
-    setEmail("");
-    setPass("");
-    setPhone("");
+    // setName("");
+    // setEmail("");
+    // setAddress("")
+    // setPass("");
+    // setPhone("");
  }
 
 

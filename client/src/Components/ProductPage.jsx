@@ -18,6 +18,8 @@ export default function ProductPage() {
   const paramObj ={
       params:{
         brand: searchParams.getAll("brand") || [],
+        _sort: searchParams.get("order") && "price",
+        _order:searchParams.get("order") 
       }
   }
 

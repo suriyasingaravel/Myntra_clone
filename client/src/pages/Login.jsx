@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -7,11 +8,12 @@ const Login = () => {
     email:"",
     pass: "",
 };
+const navigate = useNavigate()
 
   const [form,setForm]=useState(initial);
 
   const handleChange=(e)=>{
-setForm({...form,[e.target.name]:e.target.value})
+   setForm({...form,[e.target.name]:e.target.value})
 
   }
 
@@ -26,7 +28,9 @@ setForm({...form,[e.target.name]:e.target.value})
             axios.post("https://myntra-backend-cyan.vercel.app/users/login",form)
             .then(res=>{
             console.log(res.data.msg, res.data.token);
-            localStorage.setItem("token",res.data.token)
+            localStorage.setItem("token",res.data.token);
+            navigate("/")
+
             })
             .catch((err) =>alert("Wrong Credentials"));
             setForm(initial);

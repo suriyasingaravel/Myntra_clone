@@ -5,6 +5,7 @@ const Sidebar = () => {
 
     const [searchParams, setSeacrhParams] = useSearchParams();
     const [brand, setBrand] = useState(searchParams.getAll("brand") || []);
+   
 
 
     const handlebrand = (e)=>{
@@ -86,13 +87,17 @@ const Sidebar = () => {
         <div  style={{borderBottom:"1px solid lightgrey",paddingBottom:"5px"}}>
             <h3 className='text-sm my-2 font-bold'>PRICE</h3>
             <input type="checkbox"  /> 
-            <label className='ml-2'> Rs.139 to Rs.9105 </label>
+            <label className='ml-2'> Rs.100 to Rs.300 </label>
             <br />
             <input type="checkbox"  /> 
-            <label className='ml-2'>Rs.139 to Rs.9105 </label>
+            <label className='ml-2'>Rs.301 to Rs.700 </label>
             <br />
             <input type="checkbox"  /> 
-            <label className='ml-2'>Rs.9105 to Rs.18071 </label>
+            <label className='ml-2'>Rs.701 to Rs.1000 </label>
+            <br />
+            <input type="checkbox"  /> 
+            <label className='ml-2'>More than Rs.1000 </label>
+
         </div>
 
         <div  >
@@ -108,7 +113,7 @@ const Sidebar = () => {
             <br />
             <input type="checkbox"  /> 
             <label className='ml-2'>40% and above </label>
-            <h3 className='text-sm my-2 font-bold'>DISCOUNT RANGE</h3>
+            {/* <h3 className='text-sm my-2 font-bold'>DISCOUNT RANGE</h3>
             <input type="checkbox"  /> 
             <label className='ml-2'> 10% and above </label>
             <br />
@@ -119,7 +124,7 @@ const Sidebar = () => {
             <label className='ml-2'>30% and above </label>
             <br />
             <input type="checkbox"  /> 
-            <label className='ml-2'>40% and above </label>
+            <label className='ml-2'>40% and above </label> */}
         </div>
     </div>
   )

@@ -45,12 +45,12 @@ const navigation = {
             { name: 'Tops', href: '#' },
             { name: 'Dresses', href: '#' },
             { name: 'Pants', href: '#' },
-            { name: 'Denim', href: '#' },
+            // { name: 'Denim', href: '#' },
             { name: 'Sweaters', href: '#' },
             { name: 'T-Shirts', href: '#' },
-            { name: 'Jackets', href: '#' },
-            { name: 'Activewear', href: '#' },
-            { name: 'Browse All', href: '#' },
+            // { name: 'Jackets', href: '#' },
+            // { name: 'Activewear', href: '#' },
+            // { name: 'Browse All', href: '#' },
           ],
         },
         {
@@ -61,21 +61,21 @@ const navigation = {
             { name: 'Wallets', href: '#' },
             { name: 'Bags', href: '#' },
             { name: 'Sunglasses', href: '#' },
-            { name: 'Hats', href: '#' },
-            { name: 'Belts', href: '#' },
+            // { name: 'Hats', href: '#' },
+            // { name: 'Belts', href: '#' },
           ],
         },
-        {
-          id: 'brands',
-          name: 'Brands',
-          items: [
-            { name: 'Full Nelson', href: '#' },
-            { name: 'My Way', href: '#' },
-            { name: 'Re-Arranged', href: '#' },
-            { name: 'Counterfeit', href: '#' },
-            { name: 'Significant Other', href: '#' },
-          ],
-        },
+        // {
+        //   id: 'brands',
+        //   name: 'Brands',
+        //   items: [
+        //     { name: 'Full Nelson', href: '#' },
+        //     { name: 'My Way', href: '#' },
+        //     { name: 'Re-Arranged', href: '#' },
+        //     { name: 'Counterfeit', href: '#' },
+        //     { name: 'Significant Other', href: '#' },
+        //   ],
+        // },
       ],
     },
     {
@@ -104,10 +104,10 @@ const navigation = {
             { name: 'Tops', href: '#' },
             { name: 'Pants', href: '#' },
             { name: 'Sweaters', href: '#' },
-            { name: 'T-Shirts', href: '#' },
-            { name: 'Jackets', href: '#' },
-            { name: 'Activewear', href: '#' },
-            { name: 'Browse All', href: '#' },
+            { name: 'T-Shirts', href: '/products' },
+            // { name: 'Jackets', href: '#' },
+            // { name: 'Activewear', href: '#' },
+            // { name: 'Browse All', href: '#' },
           ],
         },
         {
@@ -120,6 +120,62 @@ const navigation = {
             { name: 'Sunglasses', href: '#' },
             { name: 'Hats', href: '#' },
             { name: 'Belts', href: '#' },
+          ],
+        },
+        // {
+        //   id: 'brands',
+        //   name: 'BRANDS',
+        //   items: [
+        //     { name: 'Re-Arranged', href: '#' },
+        //     { name: 'Counterfeit', href: '#' },
+        //     { name: 'Full Nelson', href: '#' },
+        //     { name: 'My Way', href: '#' },
+        //   ],
+        // },
+      ],
+    },
+    {
+      id: 'kids',
+      name: 'KIDS',
+      featured: [
+        {
+          name: 'New Arrivals',
+          href: '#',
+          imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
+          imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
+        },
+        {
+          name: 'Artwork Tees',
+          href: '#',
+          imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg',
+          imageAlt:
+            'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
+        },
+      ],
+      sections: [
+        {
+          id: 'clothing',
+          name: 'CLOTHING',
+          items: [
+            { name: 'Tops', href: '#' },
+            { name: 'Pants', href: '#' },
+            { name: 'Sweaters', href: '#' },
+            { name: 'T-Shirts', href: '/products' },
+            // { name: 'Jackets', href: '#' },
+            // { name: 'Activewear', href: '#' },
+            // { name: 'Browse All', href: '#' },
+          ],
+        },
+        {
+          id: 'accessories',
+          name: 'ACCESSORIES',
+          items: [
+            { name: 'Watches', href: '#' },
+            { name: 'Wallets', href: '#' },
+            { name: 'Bags', href: '#' },
+            // { name: 'Sunglasses', href: '#' },
+            // { name: 'Hats', href: '#' },
+            // { name: 'Belts', href: '#' },
           ],
         },
         {
@@ -139,7 +195,7 @@ const navigation = {
     { name: 'COMPANY', href: '#' },
     { name: 'STORES', href: '#' },
   ],
-}
+} 
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -149,7 +205,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="bg-white w-full border-b border-gray-200 z-20">
+    <div className="bg-white w-full border-b border-gray-200 z-20 sticky ">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -251,7 +307,7 @@ export default function Navbar() {
                   </Tab.Panels>
                 </Tab.Group>
 
-                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+                <div className="space-y-6 border-t border-gray-200 px-4 py-6 ">
                   {navigation.pages.map((page) => (
                     <div key={page.name} className="flow-root">
                       <a href={page.href} className="-m-2 block p-2 font-medium text-gray-900">

@@ -6,7 +6,25 @@ import { FaPercent } from 'react-icons/fa';
 const Bag = () => {
 
 
-  const [data,setData] = useState([])
+  const [data,setData] = useState([]);
+
+
+  const handleDelete = (id)=>{
+      // id=Number(id)
+
+      console.log(id)
+
+      axios
+      .delete(`https://myntra-backend-cyan.vercel.app/cart/delete/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        alert("Product deleted from bag successfully!");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Error deleting product from bag");
+      });
+  }
 
 
 
@@ -18,21 +36,36 @@ const Bag = () => {
       },
     })
     .then((res) => {
-      console.log(res.data.cart)
+      // console.log(res.data.cart)
+      if(res.data.cart){
+        setData(res.data.cart);
+      }
+      else{
+        setData([]);
+      }
      
-      setData(res.data.cart);
     })
     .catch((err) => console.log(err));
 
   },[])
 
-
+console.log(data)
 
   return (
-    <div className='flex w-[70%] m-auto gap-[30px]  mt-[20px]'>
+    <div >
 
-      {/* box-1 */}
-      <div className='w-[63%]'>
+      {data.length==0 ? (
+      
+         <div className='w-[50%] m-auto mt-[50px]'>
+          <img src="https://constant.myntassets.com/checkout/assets/img/empty-bag.png" alt="bag" />
+          <p className='text-[20px] '> Hey, it feels so light! </p>
+          <p className='text=[13px]'>There's nothing in your bag. Let's add some items</p>
+        
+         </div>) : (
+     <div className='flex w-[70%] m-auto gap-[30px]  mt-[20px]'>
+
+         {/* box-1 */}
+         <div className='w-[63%]'>
         <div className='flex rounded justify-between border border-solid border-grey-100 p-5 my-2'>
             <div >
                 <p>Deliver to: <span className='font-bold'>Suriya Singaravel, 638011</span> </p>
@@ -59,7 +92,7 @@ const Bag = () => {
             <p className='mx-3 text-[12px] font-bold'>MOVE TO WISHLIST </p>
           </div>
           </div>
-          {data.length > 0 && data.map((el)=>  {
+          {data.length > 0 ? (data.map((el)=>  {
             return (
               <div className='flex border border-solid border-grey-100 p-5 gap-5 rounded'>
               <div className='w-[20%]'>
@@ -81,10 +114,15 @@ const Bag = () => {
               </div>
                <p className='text-[12px] my-1'> <span className='text-[#282c3f]  font-bold'>  14 days</span> return available</p>
                <p className='text-[12px] my-1'>Delivery by <span className='font-bold'> 19 Jan 2024 </span></p>
+               <button 
+        className= 'border rounded border-[#ff3e6c] text-[#ff3e6c] w-[130px] text-[14px] font-bold h-[37px] mt-3'
+        onClick={()=>{handleDelete(el._id)}}
+        >
+           REMOVE  </button>
               </div>
              </div>
             )
-          })}
+          }) ) : <p>Bag is Empty </p>}
         
        
         </div>
@@ -141,6 +179,9 @@ const Bag = () => {
             </div>
            </div>
         </div>
+
+     </div> ) }
+   
        
       
     </div>

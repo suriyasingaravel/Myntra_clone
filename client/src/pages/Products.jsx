@@ -1,16 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../Components/Sidebar'
 import ProductPage from '../Components/ProductPage'
+import { useSearchParams } from 'react-router-dom'
 
 
 const Products = () => {
 
-  const [order,setOrder] = useState("")
+  const [searchParams, setSeacrhParams] = useSearchParams();
+  const [order,setOrder] = useState(searchParams.get("order")||"");
 
 
   const handleChange = (e)=>{
+        const {value} = e.target;
+        console.log(value);
         setOrder(e.target.value);
   }
+
+
+  useEffect(()=>{
+    let params ={ }
+    order && (params.order = order)
+
+  setSeacrhParams(params)
+
+  },[order])
 
   return (
     <div className='w-[100%] ml-2'>
@@ -22,8 +35,8 @@ const Products = () => {
           <select className='border border-solid border-gray-100 cursor-pointer' value={order}
            onChange={handleChange}>
             <option value=""> Sort by Price </option>
-            <option value="asc">Price : High to Low</option>
-            <option value="desc">Price : Low to High </option>
+            <option value="asc">Price : Low to High </option>
+            <option value="desc">Price : High to Low  </option>
           </select>
 
         </div>
