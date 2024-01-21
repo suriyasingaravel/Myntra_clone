@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { userLogin } from '../Redux/authentication/action';
+import { useToast } from '@chakra-ui/react'
 
 const Login = () => {
 
@@ -8,7 +11,10 @@ const Login = () => {
     email:"",
     pass: "",
 };
-const navigate = useNavigate()
+const navigate = useNavigate();
+const dispatch = useDispatch();
+const toast = useToast();
+
 
   const [form,setForm]=useState(initial);
 
@@ -25,14 +31,60 @@ const navigate = useNavigate()
         //     alert("Fill Your Login Form Properly!")
         // }
         // else{
+           
             axios.post("https://myntra-backend-cyan.vercel.app/users/login",form)
             .then(res=>{
             console.log(res.data.msg, res.data.token);
-            localStorage.setItem("token",res.data.token);
-            navigate("/")
+
+            if( res.data.token){
+              localStorage.setItem("token",res.data.token);
+                toast({
+                title: 'Login Successful.',
+                 description: " User has been logged in successfully",
+                 status: 'success',
+                 duration: 3000,
+                 isClosable: true,
+             })
+              navigate("/")
+            }
+            else{
+                 toast({
+                title: 'Invalid credentials',
+                description: 'Please check your username and password and try again.',
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+              });
+            }
+           
 
             })
             .catch((err) =>alert("Wrong Credentials"));
+
+            // dispatch(userLogin(form))
+            // .then(()=>{
+            //   toast({
+            //     title: 'Login Successful.',
+            //     description: " User has been logged in successfully",
+            //     status: 'success',
+            //     duration: 9000,
+            //     isClosable: true,
+            //   })
+            //   navigate("/login")
+        
+            //  })
+            //  .catch(()=>{
+        
+            //   toast({
+            //     title: 'Invalid credentials',
+            //     description: 'Please check your username and password and try again.',
+            //     status: 'error',
+            //     duration: 9000,
+            //     isClosable: true,
+            //   });
+                
+            //  })
+
             setForm(initial);
         // }
   }

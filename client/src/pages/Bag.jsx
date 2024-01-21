@@ -9,23 +9,26 @@ const Bag = () => {
   const [data,setData] = useState([]);
 
 
-  const handleDelete = (id)=>{
-      // id=Number(id)
-
-      console.log(id)
-
-      axios
-      .delete(`https://myntra-backend-cyan.vercel.app/cart/delete/${id}`)
+  const handleDelete = (id) => {
+   
+    // id = Number(id);
+  
+    console.log(id);
+  
+    axios
+      .delete(`https://myntra-backend-cyan.vercel.app/cart/delete/${id}`,
+      {headers:
+      {authorization:`Bearer ${localStorage.getItem("token")}`}
+      })
       .then((res) => {
         console.log(res.data);
         alert("Product deleted from bag successfully!");
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         alert("Error deleting product from bag");
       });
-  }
-
+  };
 
 
   useEffect(()=>{
