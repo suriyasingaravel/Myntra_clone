@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FaPercent } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 
 const Bag = () => {
@@ -175,9 +176,11 @@ console.log(data)
                 <p className='text-[15px] font-bold'>Total Amount</p>
                 <p className='text-black font-bold'> ₹349</p>
               </div>
+              <Link to={"/address"}>
               <button 
         className= 'bg-[#ff3e6c] border rounded border-pink-700 text-white w-[100%] text-[14px] font-bold h-[40px] mt-3'>
-          PLACE ORDER </button>
+          CONTINUE </button>
+          </Link>
 
             </div>
            </div>

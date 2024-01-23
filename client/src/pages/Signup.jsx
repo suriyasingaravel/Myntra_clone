@@ -19,7 +19,6 @@ const Signup = () => {
   const dispatch = useDispatch();
   const usersdata = useSelector((store)=> store.authReducer.usersData);
 
-
   console.log(usersdata);
 
  const handleClick = ()=>{
@@ -30,6 +29,8 @@ const Signup = () => {
       address: address,
       phone: phone
     }
+
+    console.log(newUser);
 
      dispatch(userRegister(newUser)).then(()=>{
       toast({

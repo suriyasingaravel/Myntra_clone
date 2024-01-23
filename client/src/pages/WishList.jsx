@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const WishList = () => {
 
-    const [data,setData] = useState([])
+    const [data,setData] = useState([]);
 
 
 

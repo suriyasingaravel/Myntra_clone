@@ -13,7 +13,6 @@ export const userRegister = (newUser)=> (dispatch)=>{
       resolve(true)
     //   alert(`User registered successfully`);
     //   navigate("/login")
-     
     })
     .catch((err)=> {
         console.log(err)
