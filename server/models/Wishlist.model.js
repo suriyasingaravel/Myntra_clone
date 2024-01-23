@@ -12,7 +12,11 @@ const wishListSchema = new mongoose.Schema({
     no_of_rating:{ type: Number, required: true },
     gender: { type: String },
     rating:{type:Number},
-});
+},
+{
+  versionKey: false,
+}
+);
 
 const WishListModel = mongoose.model("wishlist", wishListSchema);
 
