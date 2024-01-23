@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin, userRegister } from '../Redux/authentication/action';
+import { useToast } from '@chakra-ui/react'
 
 const Signup = () => {
 
@@ -9,8 +12,14 @@ const Signup = () => {
   const [pass,setPass] = useState("");
   const [address,setAddress] = useState("");
   const [phone,setPhone] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
+  const toast = useToast()
+  
+  const dispatch = useDispatch();
+  const usersdata = useSelector((store)=> store.authReducer.usersData);
+
+  console.log(usersdata);
 
  const handleClick = ()=>{
     let newUser = {
@@ -21,14 +30,40 @@ const Signup = () => {
       phone: phone
     }
 
-    axios.post(`https://myntra-backend-cyan.vercel.app/users/register`, newUser)
-    .then((res)=> {
-      console.log(res.data);
-      alert(`User registered successfully`);
+    console.log(newUser);
+
+     dispatch(userRegister(newUser)).then(()=>{
+      toast({
+        title: 'Account created.',
+        description: "New User has been created successfully",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
       navigate("/login")
+
+     })
+     .catch(()=>{
+
+      toast({
+        title: 'Error creating account.',
+        description: 'There was an error creating the account. Please try again.',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+        
+     })
+
+
+    // axios.post(`https://myntra-backend-cyan.vercel.app/users/register`, newUser)
+    // .then((res)=> {
+    //   console.log(res.data);
+    //   alert(`User registered successfully`);
+    //   navigate("/login")
      
-    })
-    .catch((err)=> console.log(err));
+    // })
+    // .catch((err)=> console.log(err));
 
     // setName("");
     // setEmail("");
@@ -42,7 +77,7 @@ const Signup = () => {
   return (
     <div className='bg-red-50 w-full h-[100vh]'>
     <div className='sm:w-[50%] md:w-[35%] lg:w-[25%] m-auto  bg-white h-[80vh]  '>
-        <img  src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/2023/10/26/f96c9b3f-6c5c-4383-8f11-12de043faa501698300150501-Flat_400--1-.jpg" alt="offer-logo" />
+        <img   src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/2023/10/26/f96c9b3f-6c5c-4383-8f11-12de043faa501698300150501-Flat_400--1-.jpg" alt="offer-logo" />
         <div>
             <h2 className='text-[20px] font-bold m-4'> Signup</h2>
             <input className='ml-4 mb-2 border border-solid border-grey-200 w-[90%] h-[40px] p-2'

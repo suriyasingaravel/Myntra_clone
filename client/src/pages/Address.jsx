@@ -1,8 +1,40 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { FaPercent } from 'react-icons/fa';
+import { AddressModal } from '../Components/AddressModal';
 
 
 const Address = () => {
+
+  const [address, setAddress]= useState([]);
+
+ 
+
+  useEffect(()=>{
+    axios
+    .get("https://myntra-backend-cyan.vercel.app/address/", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .then((res) => {
+      console.log(res.data.address);
+      if(res.data.address){
+        setAddress(res.data.address);
+      }
+      else{
+        setAddress([]);
+      }
+     
+    })
+    .catch((err) => console.log(err));
+
+  },[])
+
+
+  console.log(address);
+
+
   return (
     <div>
     <div className='flex w-[70%] m-auto gap-[30px]  mt-[20px]'>
@@ -41,18 +73,27 @@ const Address = () => {
        
         <p className='text-[#535766] text-[12px] font-bold my-3'>OTHER ADDRESS</p>
 
-        <div className='border border-solid border-grey-100 p-5 rounded'>
-        <div className='flex gap-3' >
-                <input type="radio" />
-                <p className='font-bold text-[14px]'>Suriya Singaravel </p>
+        {address.length> 0 ? address.map((el)=>{
+          return (
+
+            <div className='border border-solid border-grey-100 p-5 rounded' key={el.id}>
+            <div className='flex gap-3' >
+                    <input type="radio" />
+                    <p className='font-bold text-[14px]'>{el.name} </p>
+                </div>
+                <p className='text-[13px] text-[#424553] ml-6 my-1'>{el.address}, {el.town}</p>
+                <p className='text-[13px] text-[#424553] ml-6'>{el.city}, {el.state} - {el.pincode} </p>
+                <p className='text-[13px] text-[#424553] ml-6 mt-3'>Mobile : <span className='font-bold'> {el.mobile} </span></p>
+               
             </div>
-            <p className='text-[13px] text-[#424553] ml-6 my-1'>139/6, MRC Building, Near S.R.Fancy Store, Nasiyanur Road,</p>
-            <p className='text-[13px] text-[#424553] ml-6'>Erode, Tamilnadu-638011</p>
-            <p className='text-[13px] text-[#424553] ml-6 mt-3'>Mobile : <span className='font-bold'> 8883259467 </span></p>
-           
-        </div>
+
+          )
+        }) : (<h2>No Address Found !</h2>) }
+
+     
         <div className='flex justify-between border border-solid border-grey-100 p-5 my-2 '>
-         <button className='text-[#ff3f6c] font-bold'>+Add New Address</button>
+          <AddressModal/>
+         {/* <button className='text-[#ff3f6c] font-bold' >+Add New Address</button> */}
           </div>
          
        

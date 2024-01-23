@@ -5,7 +5,7 @@ const productRouter = express.Router();
 
 // TO ADD MULTIPLE/SINGLE PRODUCTS
 
-productRouter.get("/addProducts", async (req, res) => {
+productRouter.post("/addProducts", async (req, res) => {
   try {
     await ProductModel.insertMany();
     res.send("Data added successfully");
@@ -16,31 +16,64 @@ productRouter.get("/addProducts", async (req, res) => {
 });
 
 // get products
-
 productRouter.get("/", async (req, res) => {
   const query = req.query;
+  let product;
+
   try {
     if (query.min && query.max) {
       product = await ProductModel.find({
-        $and: [{ price: { $gte: query.min } }, { price: { $lte: query.max } }],
+        $and: [
+          { price: { $gte: query.min } },
+          { price: { $lte: query.max } }
+        ],
       });
-    } 
-    else if (query.offer) {
+    } else if (query.offer) {
       product = await ProductModel.find({
-        offer: { $gte: query.offer }}
-      );
-      
-    } 
-    else {
+        offer: { $gte: query.offer }
+      });
+    } else {
       product = await ProductModel.find(query);
     }
+
+    // Sorting based on _sort and _order parameters
+    if (query._sort && query._order) {
+      const sortOptions = {};
+      sortOptions[query._sort] = query._order === 'asc' ? 1 : -1;
+      product.sort(sortOptions);
+    }
+
     res.send(product);
 
-  }
-   catch (error) {
+  } catch (error) {
     res.send({ msg: "Something went wrong", error: error.message });
   }
 });
+
+// productRouter.get("/", async (req, res) => {
+//   const query = req.query;
+
+//   try {
+//     if (query.min && query.max) {
+//       product = await ProductModel.find({
+//         $and: [{ price: { $gte: query.min } }, { price: { $lte: query.max } }],
+//       });
+//     } 
+//     else if (query.offer) {
+//       product = await ProductModel.find({
+//         offer: { $gte: query.offer }}
+//       );
+//     } 
+//     else {
+//       product = await ProductModel.find(query);
+//     }
+//     res.send(product);
+
+//   }
+//    catch (error) {
+//     res.send({ msg: "Something went wrong", error: error.message });
+//   }
+// });
 
 // delete products
 

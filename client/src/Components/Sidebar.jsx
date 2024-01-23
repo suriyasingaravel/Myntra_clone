@@ -41,7 +41,7 @@ const Sidebar = () => {
   return (
     <div style={{border:"1px solid lightgrey", borderLeft:"none" }} 
 
-    className='text-[14px]  p-10 pt-3 pl-5'>
+    className='text-[14px]  p-10 pt-3 pl-5 sticky top-0'>
 
         <div style={{borderBottom:"1px solid lightgrey",paddingBottom:"5px"}} >
             <h3 className='text-[14px] mb-2 font-bold'>CATEGORIES</h3>

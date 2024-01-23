@@ -3,6 +3,7 @@ const { userRouter } = require("./routes/Users.routes");
 const { productRouter } = require("./routes/Product.routes");
 const { cartRouter } = require("./routes/Cart.routes");
 const {wishListRouter} = require("./routes/WishList.routes");
+const { addressRouter } = require("./routes/Address.routes");
 
 
 const { authenticate } = require("./middlewares/Authenticate.middleware");
@@ -30,6 +31,7 @@ app.use("/products", productRouter);
 app.use(authenticate);
 app.use("/cart", cartRouter);
 app.use("/wishlist", wishListRouter);
+app.use("/address", addressRouter);
 
 app.listen(process.env.PORT, async () => {
   try {

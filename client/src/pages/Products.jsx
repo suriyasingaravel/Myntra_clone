@@ -8,6 +8,7 @@ const Products = () => {
 
   const [searchParams, setSeacrhParams] = useSearchParams();
   const [order,setOrder] = useState(searchParams.get("order")||"");
+  
 
 
   const handleChange = (e)=>{

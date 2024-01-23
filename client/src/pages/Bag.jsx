@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FaPercent } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 
 const Bag = () => {
@@ -9,23 +10,26 @@ const Bag = () => {
   const [data,setData] = useState([]);
 
 
-  const handleDelete = (id)=>{
-      // id=Number(id)
-
-      console.log(id)
-
-      axios
-      .delete(`https://myntra-backend-cyan.vercel.app/cart/delete/${id}`)
+  const handleDelete = (id) => {
+   
+    // id = Number(id);
+  
+    console.log(id);
+  
+    axios
+      .delete(`https://myntra-backend-cyan.vercel.app/cart/delete/${id}`,
+      {headers:
+      {authorization:`Bearer ${localStorage.getItem("token")}`}
+      })
       .then((res) => {
         console.log(res.data);
         alert("Product deleted from bag successfully!");
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         alert("Error deleting product from bag");
       });
-  }
-
+  };
 
 
   useEffect(()=>{
@@ -172,9 +176,11 @@ console.log(data)
                 <p className='text-[15px] font-bold'>Total Amount</p>
                 <p className='text-black font-bold'> ₹349</p>
               </div>
+              <Link to={"/address"}>
               <button 
         className= 'bg-[#ff3e6c] border rounded border-pink-700 text-white w-[100%] text-[14px] font-bold h-[40px] mt-3'>
-          PLACE ORDER </button>
+          CONTINUE </button>
+          </Link>
 
             </div>
            </div>
