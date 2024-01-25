@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import TrackSidebar from '../../Components/Men Bottoms/Track Pants/TrackSidebar';
-import TrackProductPage from '../../Components/Men Bottoms/Track Pants/TrackProductPage';
+import CasualPantSidebar from '../../Components/Men Bottoms/Casual Pants/CasualPantSidebar'
+import CasualPantProductPage from '../../Components/Men Bottoms/Casual Pants/CasualPantProductPage';
 
 
 
-const TrackProducts = () => {
+
+const CasualPantProducts = () => {
 
   const [searchParams, setSeacrhParams] = useSearchParams();
   const [order,setOrder] = useState(searchParams.get("order")||"");
@@ -46,11 +47,11 @@ const TrackProducts = () => {
         <div className='flex w-full '>
 
             <div className=" sm:w-[50%] md:w-[30%] lg:w-[17%] relative" >
-          <TrackSidebar/>
+            <CasualPantSidebar/>
             </div>
            <div className=' sm:w-[50%] md:w-[70%] lg:w-[83%]'>
 
-           <TrackProductPage/>
+           <CasualPantProductPage/>
            </div>
             
         </div>
@@ -58,4 +59,4 @@ const TrackProducts = () => {
   )
 }
 
-export default TrackProducts
+export default CasualPantProducts

@@ -17,6 +17,7 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useSelector } from 'react-redux'
 
 const navigation = {
   categories: [
@@ -117,9 +118,9 @@ const navigation = {
           name: 'BOTTOMS',
           items: [
             { name: 'Formal Pants', href: '/menformalpant' },
-            { name: 'Casual Pants', href: '#' },
+            { name: 'Casual Pants', href: '/casualpant' },
             { name: 'Jeans', href: '/JeansPants' },
-            { name: 'Track Pants', href: '#' },
+            { name: 'Track Pants', href: '/trackpants' },
             // { name: 'Hats', href: '#' },
             // { name: 'Belts', href: '#' },
           ],
@@ -204,7 +205,12 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const usersData = useSelector((store)=> store.authReducer.usersData);
+  const isAuth = useSelector((store)=> store.authReducer.isAuth);
+
+
+  console.log(usersData)
 
   return (
     <div className="bg-white w-full border-b border-gray-200 z-20 sticky ">

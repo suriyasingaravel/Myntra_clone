@@ -6,7 +6,7 @@ import { getProducts } from "../../../Redux/products/action";
 // import { getProducts } from "../Redux/products/action";
 
 export default function TrackProductPage() {
-  
+
   const [data, setData] = useState([]);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
@@ -26,7 +26,7 @@ export default function TrackProductPage() {
   }
 
   const tracksData = products.filter((el) => {
-    return el.category === "Formal Pant"  && el.gender === "Men" ; // Replace "Men" with the actual gender you want to filter
+    return el.category === "Track Pant"  && el.gender === "Men" ; 
   });
 
 

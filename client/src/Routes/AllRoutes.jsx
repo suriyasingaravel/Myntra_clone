@@ -17,6 +17,8 @@ import FormalShirtProducts from '../pages/MenTops/FormalShirtProducts'
 import CasualShirtProducts from '../pages/MenTops/CasualShirtProducts'
 import TshirtProducts from '../pages/MenTops/TshirtProducts'
 import SweatersProducts from '../pages/MenTops/SweatersProducts'
+import CasualPantProducts from '../pages/Menbottoms/CasualPantProducts'
+import TrackProducts from '../pages/Menbottoms/TrackProducts'
 
 
 const AllRoutes = () => {
@@ -41,11 +43,12 @@ const AllRoutes = () => {
           <Route path='/*' element={<img src='https://images01.nicepage.com/c461c07a441a5d220e8feb1a/3a6336464a4d53d9b4355162/Na_June_54-min.png' />}/>
           <Route path='/JeansPants' element={<JeansProducts/>}/>
           <Route path="/menformalpant" element={<MenFormalPantProducts/>} />
+          <Route path="/casualpant" element={<CasualPantProducts/>} />
           <Route path="/formalshirts"  element={<FormalShirtProducts/>} />
           <Route path="/casualshirts" element={<CasualShirtProducts/>}/>
           <Route path="/tshirts" element={<TshirtProducts/>}/>
           <Route path="/sweaters" element={<SweatersProducts/>}/>
-          {/* <Route path="/trackpants" element={</>}/> */}
+          <Route path="/trackpants" element={<TrackProducts/>}/>
 
  
          
