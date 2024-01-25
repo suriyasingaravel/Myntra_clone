@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 
-const Sidebar = () => {
+const CasualShirtSidebar = () => {
 
     const [searchParams, setSeacrhParams] = useSearchParams();
     const [brand, setBrand] = useState(searchParams.getAll("brand") || []);
    
-
 
     const handlebrand = (e)=>{
         const {value} = e.target;
@@ -54,8 +53,8 @@ const Sidebar = () => {
 
         <div  style={{borderBottom:"1px solid lightgrey",paddingBottom:"5px"}} >
             <h3 className='text-sm my-2 font-bold'>BRANDS</h3>
-            <input type="checkbox" value={"Jack & Jones"} onChange={handlebrand}
-             checked={brand.includes("Jack & Jones")}  /> 
+            <input type="checkbox" value={"Jac & Jones"} onChange={handlebrand}
+             checked={brand.includes("Jac & Jones")}  /> 
             <label className='ml-2'> Jack & Jones </label>
             <br />
             <input type="checkbox" value={"Roadster"} onChange={handlebrand}
@@ -130,4 +129,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export default CasualShirtSidebar

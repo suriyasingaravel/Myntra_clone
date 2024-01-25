@@ -11,6 +11,13 @@ import { Img } from '@chakra-ui/react'
 import Address from '../pages/Address'
 import Payment from '../pages/Payment'
 import WishList from '../pages/WishList'
+import JeansProducts from '../pages/Menbottoms/JeansProducts'
+import MenFormalPantProducts from '../pages/Menbottoms/MenFormalPantProducts'
+import FormalShirtProducts from '../pages/MenTops/FormalShirtProducts'
+import CasualShirtProducts from '../pages/MenTops/CasualShirtProducts'
+import TshirtProducts from '../pages/MenTops/TshirtProducts'
+import SweatersProducts from '../pages/MenTops/SweatersProducts'
+
 
 const AllRoutes = () => {
   return (
@@ -32,8 +39,16 @@ const AllRoutes = () => {
           <Route path='/address' element={<Address/>}/>
           <Route path='/payment' element={<Payment/>}/>
           <Route path='/*' element={<img src='https://images01.nicepage.com/c461c07a441a5d220e8feb1a/3a6336464a4d53d9b4355162/Na_June_54-min.png' />}/>
+          <Route path='/JeansPants' element={<JeansProducts/>}/>
+          <Route path="/menformalpant" element={<MenFormalPantProducts/>} />
+          <Route path="/formalshirts"  element={<FormalShirtProducts/>} />
+          <Route path="/casualshirts" element={<CasualShirtProducts/>}/>
+          <Route path="/tshirts" element={<TshirtProducts/>}/>
+          <Route path="/sweaters" element={<SweatersProducts/>}/>
+          {/* <Route path="/trackpants" element={</>}/> */}
 
-
+ 
+         
 
         </Routes>
     </div>
