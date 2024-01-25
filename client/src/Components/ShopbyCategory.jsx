@@ -3,7 +3,7 @@ import React from 'react'
 const ShopbyCategory = () => {
   return (
     <div className='w-[95%] m-auto'>
-        <h1 className='text-[40px] text-center my-3'>SHOP BY CATEGORY</h1>
+         <p className='text-[32px] text-[#3e4152] font-[700] tracking-[4.5px] mx-8 my-20 '>SHOP BY CATEGORY</p>
         <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-6 '>
             <img src="https://assets.myntassets.com/w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2024/1/10/f816677d-bf3e-42b5-a700-47e53923a3361704896576488-Shop-By-Category_HP_02.jpg" alt="homeimg" />
             <img src="https://assets.myntassets.com/w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2024/1/10/95db5f21-4680-445b-9ee9-ea64c9108c1a1704896576495-Shop-By-Category_HP_03.jpg" alt="homeimg" />

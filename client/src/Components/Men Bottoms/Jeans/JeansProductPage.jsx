@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../Redux/products/action";
+import { getProducts } from "../../../Redux/products/action";
+// import { getProducts } from "../Redux/products/action";
 
-export default function ProductPage() {
+export default function JeansProductPage() {
   const [data, setData] = useState([]);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
@@ -23,7 +24,12 @@ export default function ProductPage() {
       }
   }
 
- 
+  const jeansData = products.filter((el) => {
+    return el.category === "Jeans pant"  && el.gender === "Men" ; // Replace "Men" with the actual gender you want to filter
+  });
+
+
+  console.log(jeansData);
 
   useEffect(() => {
     // axios
@@ -40,13 +46,11 @@ export default function ProductPage() {
 
     dispatch(getProducts(paramObj))
 
-
       
   }, [searchParams]);
 
 
-    
-  
+
 
   if (loading) {
     return (
@@ -68,7 +72,7 @@ export default function ProductPage() {
 
   return (
     <div className="grid gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 p-7">
-      {products.map((el) => (
+      {jeansData?.map((el) => (
         <div className="mb-2" key={el._id} >
           <Link to={`/singlepage/${el._id}`}>  <img className="w-[80%]" src={el.image_url} alt={el.subtext} /> </Link>
           <div className="ml-2">

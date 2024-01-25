@@ -9,6 +9,7 @@ import {
     useDisclosure,
     Button,
   } from '@chakra-ui/react'
+import axios from 'axios';
 import { useState } from 'react';
 
 export function AddressModal() {
@@ -33,11 +34,22 @@ export function AddressModal() {
             address:address,
             state:state,
             town:town,
-            city:city
+            city:city,
+            default:false
         }
 
         console.log(newAddress);
 
+        axios.post("https://myntra-backend-cyan.vercel.app/address/create",newAddress,
+          {headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((err) => console.log(err));
     }
 
 

@@ -17,6 +17,7 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useSelector } from 'react-redux'
 
 const navigation = {
   categories: [
@@ -85,41 +86,43 @@ const navigation = {
         {
           name: 'New Arrivals',
           href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
+          imageSrc:"https://assets.myntassets.com/f_auto,q_auto:eco,dpr_1.3,w_240,c_limit,fl_progressive/assets/images/2023/12/7/19485b79-8782-4e81-9009-e05608a656101701919170526-7DEC23-SB-RTF-Influncer-Main-card.jpg",
+          // imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
           imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
         },
         {
           name: 'Artwork Tees',
           href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg',
+          // imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg',
+          imageSrc:"https://assets.myntassets.com/f_auto,q_auto:eco,dpr_1.3,w_240,c_limit,fl_progressive/assets/images/2023/12/7/8ebd51d0-cc44-4bc3-9f53-4b846ad977981701918942022-7DEC23-SB-Influence-card-Men-1.jpg",
           imageAlt:
             'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
         },
       ],
       sections: [
         {
-          id: 'clothing',
-          name: 'CLOTHING',
+          id: 'tops',
+          name: 'TOPS',
           items: [
-            { name: 'Tops', href: '#' },
-            { name: 'Pants', href: '#' },
-            { name: 'Sweaters', href: '#' },
-            { name: 'T-Shirts', href: '/products' },
+            { name: 'Formal Shirts', href: '/formalshirts' },
+            { name: 'Casual Shirts', href: '/casualshirts' },
+            { name: 'T-Shirts', href: '/tshirts' },
+            { name: 'Sweaters/ SweatShirts', href: '/sweaters' },
             // { name: 'Jackets', href: '#' },
             // { name: 'Activewear', href: '#' },
             // { name: 'Browse All', href: '#' },
           ],
         },
         {
-          id: 'accessories',
-          name: 'ACCESSORIES',
+          id: 'bottoms',
+          name: 'BOTTOMS',
           items: [
-            { name: 'Watches', href: '#' },
-            { name: 'Wallets', href: '#' },
-            { name: 'Bags', href: '#' },
-            { name: 'Sunglasses', href: '#' },
-            { name: 'Hats', href: '#' },
-            { name: 'Belts', href: '#' },
+            { name: 'Formal Pants', href: '/menformalpant' },
+            { name: 'Casual Pants', href: '/casualpant' },
+            { name: 'Jeans', href: '/JeansPants' },
+            { name: 'Track Pants', href: '/trackpants' },
+            // { name: 'Hats', href: '#' },
+            // { name: 'Belts', href: '#' },
           ],
         },
         // {
@@ -202,7 +205,12 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const usersData = useSelector((store)=> store.authReducer.usersData);
+  const isAuth = useSelector((store)=> store.authReducer.isAuth);
+
+
+  console.log(usersData)
 
   return (
     <div className="bg-white w-full border-b border-gray-200 z-20 sticky ">
